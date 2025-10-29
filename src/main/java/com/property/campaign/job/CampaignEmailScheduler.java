@@ -48,7 +48,7 @@ public class CampaignEmailScheduler {
 
     private static final int lastUpdateAfterDate = 360;
 
-    private static final String Temp_Campain_Topic = "AI-powered Booking Engine";
+    private static final String Temp_Campaign_Topic = "AI-powered Booking Engine";
 
     @Scheduled(fixedDelayString = "${campaign.scheduler.fixed-delay}")
     public void createEmailCampaignJob() {
@@ -68,7 +68,7 @@ public class CampaignEmailScheduler {
 
             List<EmailDataDirectus> dataFromDirectusApi =   directusDataService.getDataFromDirectusApi(directusToken.getAccessToken());
 
-            List<EmailDataDirectus> directusCampaignList =   dataFromDirectusApi.stream().filter(m->m.getTopic().equals(Temp_Campain_Topic)
+            List<EmailDataDirectus> directusCampaignList =   dataFromDirectusApi.stream().filter(m->m.getTopic().equals(Temp_Campaign_Topic)
                     && Objects.nonNull(m.getCountry()) && Objects.nonNull(m.getCampaignActivation()) && m.getCampaignActivation()
                     && Objects.nonNull(m.getEmailLimitation()) &&  Objects.nonNull(m.getTemplate())).toList();
 
