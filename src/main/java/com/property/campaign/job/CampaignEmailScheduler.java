@@ -76,13 +76,11 @@ public class CampaignEmailScheduler {
                     .filter(data -> data.getLatitude() != null && data.getLongitude() != null)
                     .collect(Collectors.toList());
 
-            List<EmailDataDirectus> directusCampaignListWithCountry_old = directusCampaignList.stream()
+            List<EmailDataDirectus> directusCampaignListWithCountry = directusCampaignList.stream()
                     .filter(data -> data.getLatitude() == null || data.getLongitude() == null)
                     .collect(Collectors.toList());
 
             log.info("Step 1: Directus campaigns with geocode: {}", directusCampaignListWithGeoCode.size());
-
-            List<EmailDataDirectus> directusCampaignListWithCountry = directusCampaignListWithCountry_old.stream().filter(m->m.getId() == 2).toList();
 
             // Geocode-wise property search
             List<PropertySearchResponse> geocodeWisePropertyList = propertiesSearchService.getPropertiesByGeocodeAndRadius(directusCampaignListWithGeoCode);
